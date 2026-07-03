@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" class="bg-black text-zinc-200">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>exempli — about</title>
+    <meta name="description" content="exempli is a small bench of engineers building custom software for teams who've outgrown the off-the-shelf stack." />
+
+
+    <style>
+      /* Hero orb canvas — same shader as home, positioned right */
+      .about-canvas {
+        position: absolute;
+        right: -4vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: min(56vw, 620px);
+        height: min(56vw, 620px);
+        pointer-events: none;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 1.4s ease;
+      }
+      .about-canvas.is-visible { opacity: 1; }
+      .hero-content { position: relative; z-index: 1; }
+
+      /* Value cards */
+      .value-card {
+        position: relative;
+        padding: 2.5rem 2rem;
+        border-right: 1px solid rgba(58, 58, 58, 0.45);
+        transition: background 0.5s ease;
+      }
+      .value-card:last-child { border-right: none; }
+      .value-card:hover { background: rgba(232, 168, 124, 0.04); }
+      .value-card::after {
+        content: ""; position: absolute; left: 0; bottom: 0;
+        width: 0; height: 1px; background: #e8a87c;
+        transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      .value-card:hover::after { width: 100%; }
+      .value-marker { color: #8a8a8a; transition: color 0.4s ease; }
+      .value-card:hover .value-marker { color: #e8a87c; }
+      .value-title {
+        font-family: var(--font-sans); font-weight: 800; color: #fff;
+        font-size: clamp(28px, 3.4vw, 48px); letter-spacing: -0.025em; line-height: 1.05;
+      }
+
+      @media (max-width: 768px) {
+        .value-card { border-right: none; border-bottom: 1px solid rgba(58, 58, 58, 0.45); }
+        .value-card:last-child { border-bottom: none; }
+      }
+
+    </style>
+    <script type="module" crossorigin src="/exempli-preview/assets/about-CWe3tmOf.js"></script>
+    <link rel="modulepreload" crossorigin href="/exempli-preview/assets/space-CkLeqHVc.js">
+    <link rel="modulepreload" crossorigin href="/exempli-preview/assets/orb-CzJqNU2c.js">
+    <link rel="stylesheet" crossorigin href="/exempli-preview/assets/space-CnOghq1W.css">
+  </head>
+
+  <body class="grain font-sans antialiased">
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Nav -->
+    <header id="nav" class="fixed top-0 inset-x-0 z-40 px-6 sm:px-10 py-6 flex items-center justify-between">
+      <a href="index.html" class="hover-target">
+        <img src="/exempli-preview/logo.png" alt="exempli" class="block h-[18px] w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.18em] text-ink-100">
+        <a class="link-hover hover-target" href="index.html"><span class="link-inner">Home</span><span class="link-ghost">Home</span></a>
+        <a class="link-hover hover-target" href="work.html"><span class="link-inner">Work</span><span class="link-ghost">Work</span></a>
+        <a class="link-hover hover-target" href="process.html"><span class="link-inner">Process</span><span class="link-ghost">Process</span></a>
+        <a class="link-hover hover-target" href="about.html"><span class="link-inner text-accent">About</span><span class="link-ghost">About</span></a>
+        <a class="link-hover hover-target" href="security.html"><span class="link-inner">Security</span><span class="link-ghost">Security</span></a>
+      </nav>
+      <a href="index.html#contact" class="hover-target group hidden md:inline-flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white">
+        <span class="size-2 rounded-full bg-accent animate-pulse"></span>
+        Claim Free Consultation
+      </a>
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-menu">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
+    </header>
+
+    <!-- Mobile menu (only nav below md) -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <nav class="flex flex-col">
+        <a href="index.html"><span class="menu-index">01</span>home</a>
+        <a href="work.html"><span class="menu-index">02</span>work</a>
+        <a href="process.html"><span class="menu-index">03</span>process</a>
+        <a href="about.html" class="is-active"><span class="menu-index">04</span>about</a>
+        <a href="security.html"><span class="menu-index">05</span>security</a>
+        <a href="index.html#contact"><span class="menu-index">06</span>contact</a>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative min-h-[72vh] flex flex-col justify-end px-6 sm:px-10 pb-12 pt-36 overflow-hidden">
+      <canvas id="about-canvas" class="about-canvas"></canvas>
+      <div class="hero-shade hero-shade--left"></div>
+
+      <div class="hero-content page-enter">
+        <div class="section-marker mb-10 flex items-center gap-6">
+          <span class="accent">//01</span>
+          <span>About</span>
+        </div>
+
+        <h1
+          class="font-sans font-extrabold tracking-[-0.04em] leading-[0.9] text-white"
+          style="font-size: clamp(56px, min(11vw, 17vh), 200px);"
+        >
+          <span class="block">small team.</span>
+          <span class="block text-accent">big problems.</span>
+        </h1>
+
+        <p class="mt-8 max-w-xl text-ink-100 text-base sm:text-lg leading-relaxed">
+          exempli is a small bench of senior engineers who care about software that fits.
+          We build custom — not because it's fashionable, but because most teams have
+          outgrown the off-the-shelf tools they started with.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="relative px-6 sm:px-10 py-24">
+      <div class="section-marker mb-10 flex items-center gap-6 page-enter">
+        <span class="accent">//02</span>
+        <span>Mission</span>
+      </div>
+      <h2
+        class="font-sans font-bold tracking-[-0.03em] leading-[1.05] text-white max-w-5xl"
+        style="font-size: clamp(36px, 5vw, 84px);"
+      >
+        We exist to help teams replace the half-dozen apps that almost work with
+        <span class="text-accent">one thing</span> that fits — designed around how they
+        actually run, maintained by the people who built it.
+      </h2>
+    </section>
+
+    <!-- Values -->
+    <section class="relative">
+      <div class="px-6 sm:px-10">
+        <div class="section-marker mb-10 flex items-center gap-6 page-enter">
+          <span class="accent">//03</span>
+          <span>What we believe</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 border-y border-ink-500/40">
+        <div class="value-card">
+          <div class="value-marker section-marker mb-6">001 · Bias to fit</div>
+          <h3 class="value-title">Software designed around your team, not a generic best practice.</h3>
+          <p class="mt-5 text-ink-100 leading-relaxed">
+            Off-the-shelf is optimized for the average customer. You're not the average.
+            The fit matters more than the feature list.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-marker section-marker mb-6">002 · Less stack</div>
+          <h3 class="value-title">Fewer tools, tighter integration, lower mental load.</h3>
+          <p class="mt-5 text-ink-100 leading-relaxed">
+            Every app you adopt is a tax on attention. We build the one thing that
+            quietly replaces three of them.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-marker section-marker mb-6">003 · Stay on</div>
+          <h3 class="value-title">We maintain what we ship. No throwaway demos.</h3>
+          <p class="mt-5 text-ink-100 leading-relaxed">
+            Production-grade from day one. We're around when reality hits the model,
+            not in a deck six weeks ago.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders -->
+    <section class="relative px-6 sm:px-10 py-24 sm:py-28">
+      <div class="section-marker mb-10 flex items-center gap-6 page-enter">
+        <span class="accent">//04</span>
+        <span>Founders</span>
+      </div>
+
+      <!-- Ethan -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <h3
+            class="font-sans font-extrabold tracking-[-0.03em] leading-[1] text-white"
+            style="font-size: clamp(36px, 5vw, 76px);"
+          >
+            Ethan Walker
+          </h3>
+          <p class="mt-4 section-marker">Co-founder · engineer · architect</p>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 text-ink-100 text-base sm:text-lg leading-relaxed space-y-5">
+          <p>
+            Ethan co-founded exempli with Charlie after watching one too many teams pay for
+            five tools that half-solved one problem. He's built systems for clinics, logistics
+            startups, indie studios, and solo founders — always with the same bias: ship the
+            one thing that actually fits.
+          </p>
+          <p>
+            Outside of exempli he tinkers with synths, writes the occasional essay, and is a
+            reliable second opinion on whether your stack really needs that fourth dashboard.
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-ink-500/30 my-12 md:my-16"></div>
+
+      <!-- Charlie -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <h3
+            class="font-sans font-extrabold tracking-[-0.03em] leading-[1] text-white"
+            style="font-size: clamp(36px, 5vw, 76px);"
+          >
+            Charlie Thompson
+          </h3>
+          <p class="mt-4 section-marker">Co-founder · AI engineer · data architect</p>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 text-ink-100 text-base sm:text-lg leading-relaxed space-y-5">
+          <p>
+            Charlie runs the AI and data side of exempli. He's built training pipelines for
+            clinical decision-support models, real-time fraud detection for fintech, and the
+            kind of data infrastructure that doesn't fall over when someone runs a backfill
+            at 2am. He cares more about evals than benchmarks, and more about feedback loops
+            than feature counts.
+          </p>
+          <p>
+            Charlie believes most teams need fewer models, not more — and that the boring
+            parts (data quality, monitoring, retrieval that actually returns the right thing)
+            are where the real leverage lives. Outside exempli he reads too many ML papers
+            and keeps threatening to publish his own.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact — shared page base -->
+    <section id="contact" class="relative px-6 sm:px-10 pt-24 sm:pt-32 pb-8 sm:pb-10 overflow-hidden">
+      <canvas id="contact-canvas" class="contact-canvas"></canvas>
+
+      <div class="contact-content">
+        <div class="section-marker mb-10 flex items-center gap-6">
+          <span class="accent">//05</span>
+          <span>Contact</span>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 lg:items-center">
+          <h2
+            class="lg:col-span-8 font-sans font-extrabold tracking-[-0.04em] leading-[0.9] text-white max-w-4xl"
+            style="font-size: clamp(48px, 8vw, 140px);"
+          >
+            need software that <span class="text-accent">fits</span>?
+          </h2>
+          <a href="mailto:hello@exempli.ai" class="contact-cta hover-target magnetic lg:col-span-4">
+            <span>Claim Free Consultation</span>
+            <span class="contact-cta-arrow">→</span>
+          </a>
+        </div>
+
+        <footer class="mt-16 border-t border-ink-500/30 pt-8 flex flex-col sm:flex-row justify-between gap-4 section-marker">
+          <span>exempli // custom software</span>
+          <nav class="flex gap-6">
+            <a class="hover-target hover:text-accent transition-colors" href="work.html">work</a>
+            <a class="hover-target hover:text-accent transition-colors" href="process.html">process</a>
+            <a class="hover-target hover:text-accent transition-colors" href="about.html">about</a>
+            <a class="hover-target hover:text-accent transition-colors" href="security.html">security</a>
+          </nav>
+          <span>© 2026 — all rights reserved</span>
+        </footer>
+      </div>
+    </section>
+
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" class="bg-black text-zinc-200">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>exempli — how we work</title>
+    <meta name="description" content="exempli's five-step process: audit, architect, design, build, tune." />
+
+
+    <style>
+      /* Process steps */
+      .step {
+        position: relative;
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr) auto;
+        gap: 3rem;
+        align-items: center;
+        padding: 3.25rem 1.5rem;
+        border-top: 1px solid rgba(58, 58, 58, 0.45);
+      }
+      .step:last-child { border-bottom: 1px solid rgba(58, 58, 58, 0.45); }
+      .step-marker {
+        font-family: var(--font-mono);
+        font-size: 11px; letter-spacing: 0.18em;
+        color: #e8a87c; text-transform: uppercase;
+      }
+      .step-title {
+        font-family: var(--font-sans); font-weight: 800; color: #fff;
+        font-size: clamp(40px, 6vw, 88px); letter-spacing: -0.035em; line-height: 1;
+      }
+      .step-desc { color: #b8b8b8; margin-top: 1rem; font-size: 17px; line-height: 1.55; max-width: 42ch; }
+      .step-canvas { width: 140px; height: 140px; justify-self: end; display: block; }
+
+      @media (max-width: 768px) {
+        .step { grid-template-columns: 1fr; gap: 1.25rem; padding: 3rem 1rem; }
+        .step-canvas { width: 100px; height: 100px; justify-self: start; }
+      }
+
+      /* Hero canvas */
+      .hero-canvas {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        pointer-events: none; opacity: 0; z-index: 0;
+        transition: opacity 1s ease;
+      }
+      .hero-canvas.is-visible { opacity: 1; }
+      .hero-content { position: relative; z-index: 1; }
+
+    </style>
+    <script type="module" crossorigin src="/exempli-preview/assets/process-JwMS25wV.js"></script>
+    <link rel="modulepreload" crossorigin href="/exempli-preview/assets/space-CkLeqHVc.js">
+    <link rel="stylesheet" crossorigin href="/exempli-preview/assets/space-CnOghq1W.css">
+  </head>
+
+  <body class="grain font-sans antialiased">
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Nav -->
+    <header id="nav" class="fixed top-0 inset-x-0 z-40 px-6 sm:px-10 py-6 flex items-center justify-between">
+      <a href="index.html" class="hover-target">
+        <img src="/exempli-preview/logo.png" alt="exempli" class="block h-[18px] w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.18em] text-ink-100">
+        <a class="link-hover hover-target" href="index.html"><span class="link-inner">Home</span><span class="link-ghost">Home</span></a>
+        <a class="link-hover hover-target" href="work.html"><span class="link-inner">Work</span><span class="link-ghost">Work</span></a>
+        <a class="link-hover hover-target" href="process.html"><span class="link-inner text-accent">Process</span><span class="link-ghost">Process</span></a>
+        <a class="link-hover hover-target" href="about.html"><span class="link-inner">About</span><span class="link-ghost">About</span></a>
+        <a class="link-hover hover-target" href="security.html"><span class="link-inner">Security</span><span class="link-ghost">Security</span></a>
+      </nav>
+      <a href="index.html#contact" class="hover-target group hidden md:inline-flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white">
+        <span class="size-2 rounded-full bg-accent animate-pulse"></span>
+        Claim Free Consultation
+      </a>
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-menu">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
+    </header>
+
+    <!-- Mobile menu (only nav below md) -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <nav class="flex flex-col">
+        <a href="index.html"><span class="menu-index">01</span>home</a>
+        <a href="work.html"><span class="menu-index">02</span>work</a>
+        <a href="process.html" class="is-active"><span class="menu-index">03</span>process</a>
+        <a href="about.html"><span class="menu-index">04</span>about</a>
+        <a href="security.html"><span class="menu-index">05</span>security</a>
+        <a href="index.html#contact"><span class="menu-index">06</span>contact</a>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative min-h-[68vh] flex flex-col justify-end px-6 sm:px-10 pb-12 pt-36 overflow-hidden">
+      <canvas id="hero-canvas" class="hero-canvas"></canvas>
+      <div class="hero-shade"></div>
+
+      <div class="hero-content page-enter">
+        <div class="section-marker mb-10 flex items-center gap-6">
+          <span class="accent">//01</span>
+          <span>Process · five steps</span>
+        </div>
+
+        <h1
+          class="font-sans font-extrabold tracking-[-0.04em] leading-[0.9] text-white"
+          style="font-size: clamp(48px, min(9vw, 15vh), 170px);"
+        >
+          <span class="block">audit. architect. design.</span>
+          <span class="block"><span class="text-accent">build.</span> tune.</span>
+        </h1>
+
+        <p class="mt-10 max-w-xl text-ink-100 text-base sm:text-lg leading-relaxed">
+          Five steps from your problem to your software. No theatre, no demo-ware,
+          no twelve-week discovery phase. We move fast because we ask the right questions early.
+        </p>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="relative px-6 sm:px-10 pt-8 pb-16">
+      <div class="section-marker mb-12 flex items-center gap-6 page-enter">
+        <span class="accent">//02</span>
+        <span>The five steps</span>
+      </div>
+
+      <div class="step" data-step>
+        <div class="step-marker">001 · Audit</div>
+        <div>
+          <h2 class="step-title">audit</h2>
+          <p class="step-desc">
+            We sit with your team and map the actual stack. Most fixes start by seeing which tools
+            earn their keep and which don't — and where the duct tape is hiding.
+          </p>
+        </div>
+        <canvas class="step-canvas" data-anim="audit"></canvas>
+      </div>
+
+      <div class="step" data-step>
+        <div class="step-marker">002 · Architect</div>
+        <div>
+          <h2 class="step-title">architect</h2>
+          <p class="step-desc">
+            We sketch the simplest system that covers your real workflow. Fewer moving parts,
+            fewer failure modes. Boring tech where boring works.
+          </p>
+        </div>
+        <canvas class="step-canvas" data-anim="architect"></canvas>
+      </div>
+
+      <div class="step" data-step>
+        <div class="step-marker">003 · Design</div>
+        <div>
+          <h2 class="step-title">design</h2>
+          <p class="step-desc">
+            Interfaces that match how your team thinks. No dashboard tax, no menus-within-menus.
+            Designed around the action you take most.
+          </p>
+        </div>
+        <canvas class="step-canvas" data-anim="design"></canvas>
+      </div>
+
+      <div class="step" data-step>
+        <div class="step-marker">004 · Build</div>
+        <div>
+          <h2 class="step-title">build</h2>
+          <p class="step-desc">
+            Production-grade from day one. Versioned, tested, documented. No throwaway demos
+            that never make it into real hands.
+          </p>
+        </div>
+        <canvas class="step-canvas" data-anim="build"></canvas>
+      </div>
+
+      <div class="step" data-step>
+        <div class="step-marker">005 · Tune</div>
+        <div>
+          <h2 class="step-title">tune</h2>
+          <p class="step-desc">
+            We stay past deploy. Software needs tending — better to catch a regression
+            than read about it in a Slack at 11pm.
+          </p>
+        </div>
+        <canvas class="step-canvas" data-anim="tune"></canvas>
+      </div>
+    </section>
+
+    <!-- Contact — shared page base -->
+    <section id="contact" class="relative px-6 sm:px-10 pt-24 sm:pt-32 pb-8 sm:pb-10 overflow-hidden">
+      <canvas id="contact-canvas" class="contact-canvas"></canvas>
+
+      <div class="contact-content">
+        <div class="section-marker mb-10 flex items-center gap-6">
+          <span class="accent">//03</span>
+          <span>Contact</span>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 lg:items-center">
+          <h2
+            class="lg:col-span-8 font-sans font-extrabold tracking-[-0.04em] leading-[0.9] text-white max-w-4xl"
+            style="font-size: clamp(48px, 8vw, 140px);"
+          >
+            need software that <span class="text-accent">fits</span>?
+          </h2>
+          <a href="mailto:hello@exempli.ai" class="contact-cta hover-target magnetic lg:col-span-4">
+            <span>Claim Free Consultation</span>
+            <span class="contact-cta-arrow">→</span>
+          </a>
+        </div>
+
+        <footer class="mt-16 border-t border-ink-500/30 pt-8 flex flex-col sm:flex-row justify-between gap-4 section-marker">
+          <span>exempli // custom software</span>
+          <nav class="flex gap-6">
+            <a class="hover-target hover:text-accent transition-colors" href="work.html">work</a>
+            <a class="hover-target hover:text-accent transition-colors" href="process.html">process</a>
+            <a class="hover-target hover:text-accent transition-colors" href="about.html">about</a>
+            <a class="hover-target hover:text-accent transition-colors" href="security.html">security</a>
+          </nav>
+          <span>© 2026 — all rights reserved</span>
+        </footer>
+      </div>
+    </section>
+
+  </body>
+</html>
