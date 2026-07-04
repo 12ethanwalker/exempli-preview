@@ -170,16 +170,13 @@
         z-index: 1;
       }
       /* Pillars grid — interactive expanding text */
+      /* Fixed 3-up grid — tiles never resize or reflow on interaction. */
       .pillars-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         border-top: 1px solid rgba(58, 58, 58, 0.45);
         border-bottom: 1px solid rgba(58, 58, 58, 0.45);
-        transition: grid-template-columns 0.75s cubic-bezier(0.65, 0, 0.35, 1);
       }
-      .pillars-grid[data-active="0"] { grid-template-columns: 2.2fr 1fr 1fr; }
-      .pillars-grid[data-active="1"] { grid-template-columns: 1fr 2.2fr 1fr; }
-      .pillars-grid[data-active="2"] { grid-template-columns: 1fr 1fr 2.2fr; }
 
       .pillar {
         position: relative;
@@ -194,16 +191,13 @@
         font: inherit;
         overflow: hidden;
         isolation: isolate;
-        transition:
-          background 0.5s ease,
-          padding 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        transition: background 0.5s ease;
       }
       .pillar:last-child { border-right: 0; }
+      /* Hover/lock: tint only — no padding shift, no resize. */
       .pillar:hover,
       .pillar.is-locked {
         background: rgba(232, 168, 124, 0.05);
-        padding-left: 3rem;
-        padding-right: 3rem;
       }
 
       /* Cursor spotlight — a soft peach light tracks the pointer inside the
@@ -223,8 +217,7 @@
         );
         transition: opacity 0.5s ease;
       }
-      .pillar:hover .pillar-glow,
-      .pillar.is-locked .pillar-glow {
+      .pillar:hover .pillar-glow {
         opacity: 1;
       }
 
@@ -242,16 +235,12 @@
         line-height: 1.55;
         color: #b8b8b8;
         max-width: 36ch;
-        transition:
-          font-size 0.55s cubic-bezier(0.65, 0, 0.35, 1),
-          color 0.4s ease,
-          max-width 0.6s ease;
+        transition: color 0.4s ease;
       }
+      /* Brighten the copy on hover/lock — colour only, size stays put. */
       .pillar:hover .pillar-body,
       .pillar.is-locked .pillar-body {
-        font-size: 1.35rem;
         color: #ffffff;
-        max-width: 48ch;
       }
 
       .pillar-cue {
@@ -310,12 +299,8 @@
       @media (max-width: 768px) {
         .pillars-grid {
           grid-template-columns: 1fr !important;
-          grid-template-rows: minmax(120px, auto) minmax(120px, auto) minmax(120px, auto);
-          transition: grid-template-rows 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+          grid-template-rows: auto auto auto;
         }
-        .pillars-grid[data-active="0"] { grid-template-rows: 2.4fr 1fr 1fr; }
-        .pillars-grid[data-active="1"] { grid-template-rows: 1fr 2.4fr 1fr; }
-        .pillars-grid[data-active="2"] { grid-template-rows: 1fr 1fr 2.4fr; }
         .pillar {
           border-right: 0;
           border-bottom: 1px solid rgba(58, 58, 58, 0.45);
@@ -323,10 +308,6 @@
           padding: 2rem 1.5rem 3rem;
         }
         .pillar:last-child { border-bottom: 0; }
-        .pillar:hover,
-        .pillar.is-locked {
-          padding: 3rem 1.5rem 4rem;
-        }
       }
     </style>
     <script type="module" crossorigin src="/exempli-preview/assets/index-yjswytZJ.js"></script>
