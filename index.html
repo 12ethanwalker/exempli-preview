@@ -186,7 +186,6 @@
         border-right: 1px solid rgba(58, 58, 58, 0.45);
         padding: 3rem 2rem 4rem;
         min-height: 320px;
-        cursor: pointer;
         color: inherit;
         font: inherit;
         overflow: hidden;
@@ -194,9 +193,8 @@
         transition: background 0.5s ease;
       }
       .pillar:last-child { border-right: 0; }
-      /* Hover/lock: tint only — no padding shift, no resize. */
-      .pillar:hover,
-      .pillar.is-locked {
+      /* Hover: tint only — no padding shift, no resize. */
+      .pillar:hover {
         background: rgba(232, 168, 124, 0.05);
       }
 
@@ -225,8 +223,7 @@
         margin-bottom: 1.75rem;
         transition: color 0.4s ease;
       }
-      .pillar:hover .pillar-marker,
-      .pillar.is-locked .pillar-marker {
+      .pillar:hover .pillar-marker {
         color: #e8a87c;
       }
 
@@ -237,9 +234,8 @@
         max-width: 36ch;
         transition: color 0.4s ease;
       }
-      /* Brighten the copy on hover/lock — colour only, size stays put. */
-      .pillar:hover .pillar-body,
-      .pillar.is-locked .pillar-body {
+      /* Brighten the copy on hover — colour only, size stays put. */
+      .pillar:hover .pillar-body {
         color: #ffffff;
       }
 
@@ -257,14 +253,13 @@
           transform 0.5s ease,
           color 0.4s ease;
       }
-      .pillar:hover .pillar-cue,
-      .pillar.is-locked .pillar-cue {
+      .pillar:hover .pillar-cue {
         opacity: 1;
         transform: translateY(0);
         color: #e8a87c;
       }
 
-      /* Bottom peach progress line on hover/lock */
+      /* Bottom peach progress line on hover */
       .pillar::after {
         content: "";
         position: absolute;
@@ -275,26 +270,7 @@
         background: #e8a87c;
         transition: width 0.75s cubic-bezier(0.65, 0, 0.35, 1);
       }
-      .pillar:hover::after,
-      .pillar.is-locked::after { width: 100%; }
-
-      /* Lock indicator */
-      .pillar.is-locked::before {
-        content: "";
-        position: absolute;
-        top: 1.4rem;
-        right: 1.4rem;
-        width: 6px;
-        height: 6px;
-        background: #e8a87c;
-        border-radius: 50%;
-        box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.18);
-        animation: pulse-dot 1.6s ease-in-out infinite;
-      }
-      @keyframes pulse-dot {
-        0%, 100% { box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.18); }
-        50%      { box-shadow: 0 0 0 8px rgba(232, 168, 124, 0.05); }
-      }
+      .pillar:hover::after { width: 100%; }
 
       @media (max-width: 768px) {
         .pillars-grid {
@@ -310,7 +286,7 @@
         .pillar:last-child { border-bottom: 0; }
       }
     </style>
-    <script type="module" crossorigin src="/exempli-preview/assets/index-yjswytZJ.js"></script>
+    <script type="module" crossorigin src="/exempli-preview/assets/index-D_Z0Zaay.js"></script>
     <link rel="modulepreload" crossorigin href="/exempli-preview/assets/space-DxFPNqZB.js">
     <link rel="modulepreload" crossorigin href="/exempli-preview/assets/orb-DHvzIjxT.js">
     <link rel="stylesheet" crossorigin href="/exempli-preview/assets/space-Dl8luUH9.css">
@@ -464,30 +440,30 @@
       </h2>
 
       <div class="pillars-grid mt-14" id="pillars" data-fade>
-        <button class="pillar hover-target" type="button" data-pillar="0">
+        <div class="pillar hover-target">
           <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">001 · Audit</div>
           <p class="pillar-body">
             We sit with your team and map the stack. The fix usually starts by seeing which tools earn their keep and which don't.
           </p>
           <span class="pillar-cue">↗</span>
-        </button>
-        <button class="pillar hover-target" type="button" data-pillar="1">
+        </div>
+        <div class="pillar hover-target">
           <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">002 · Build</div>
           <p class="pillar-body">
             Custom software designed around your workflow. Fewer tools, tighter fit, production-grade from day one.
           </p>
           <span class="pillar-cue">↗</span>
-        </button>
-        <button class="pillar hover-target" type="button" data-pillar="2">
+        </div>
+        <div class="pillar hover-target">
           <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">003 · Tune</div>
           <p class="pillar-body">
             We stay past deploy. Software needs tending — better to catch a regression than read about it later.
           </p>
           <span class="pillar-cue">↗</span>
-        </button>
+        </div>
       </div>
     </section>
 
