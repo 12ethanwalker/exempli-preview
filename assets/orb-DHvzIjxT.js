@@ -1,4 +1,4 @@
-import{L as e,U as t,W as n,_ as r,r as i}from"./space-CkLeqHVc.js";function a(){return new e({uniforms:{uTime:{value:0},uDistort:{value:.22},uMouse:{value:new t(0,0)},uAccent:{value:new r(`#E8A87C`)},uDeep:{value:new r(`#1a0a04`)},uCharge:{value:0},uChargeTime:{value:0},uVein:{value:new r(`#82CFFF`)},uSeed:{value:new n(0,0,1)},uAmp:{value:1},uFlat:{value:0},uFlatColor:{value:new r(235/255,159/255,117/255)}},vertexShader:`
+import{L as e,U as t,W as n,_ as r,r as i}from"./space-DxFPNqZB.js";function a(){return new e({uniforms:{uTime:{value:0},uDistort:{value:.22},uMouse:{value:new t(0,0)},uAccent:{value:new r(`#E8A87C`)},uDeep:{value:new r(`#1a0a04`)},uCharge:{value:0},uChargeTime:{value:0},uVein:{value:new r(`#82CFFF`)},uSeed:{value:new n(0,0,1)},uAmp:{value:1},uFlat:{value:0},uFlatColor:{value:new r(235/255,159/255,117/255)}},vertexShader:`
       uniform float uTime;
       uniform float uDistort;
       uniform vec2 uMouse;
