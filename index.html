@@ -193,6 +193,7 @@
         color: inherit;
         font: inherit;
         overflow: hidden;
+        isolation: isolate;
         transition:
           background 0.5s ease,
           padding 0.6s cubic-bezier(0.65, 0, 0.35, 1);
@@ -203,6 +204,28 @@
         background: rgba(232, 168, 124, 0.05);
         padding-left: 3rem;
         padding-right: 3rem;
+      }
+
+      /* Cursor spotlight — a soft peach light tracks the pointer inside the
+         tile. The tile itself never moves; only the glow follows the cursor.
+         Sits above the flat hover tint but below the text (z-index -1 within
+         the tile's own stacking context). */
+      .pillar-glow {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(
+          circle 220px at var(--mx, 50%) var(--my, 50%),
+          rgba(232, 168, 124, 0.14),
+          transparent 62%
+        );
+        transition: opacity 0.5s ease;
+      }
+      .pillar:hover .pillar-glow,
+      .pillar.is-locked .pillar-glow {
+        opacity: 1;
       }
 
       .pillar-marker {
@@ -306,7 +329,7 @@
         }
       }
     </style>
-    <script type="module" crossorigin src="/exempli-preview/assets/index-5ynF_6mn.js"></script>
+    <script type="module" crossorigin src="/exempli-preview/assets/index-yjswytZJ.js"></script>
     <link rel="modulepreload" crossorigin href="/exempli-preview/assets/space-DxFPNqZB.js">
     <link rel="modulepreload" crossorigin href="/exempli-preview/assets/orb-DHvzIjxT.js">
     <link rel="stylesheet" crossorigin href="/exempli-preview/assets/space-Dl8luUH9.css">
@@ -461,6 +484,7 @@
 
       <div class="pillars-grid mt-14" id="pillars" data-fade>
         <button class="pillar hover-target" type="button" data-pillar="0">
+          <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">001 · Audit</div>
           <p class="pillar-body">
             We sit with your team and map the stack. The fix usually starts by seeing which tools earn their keep and which don't.
@@ -468,6 +492,7 @@
           <span class="pillar-cue">↗</span>
         </button>
         <button class="pillar hover-target" type="button" data-pillar="1">
+          <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">002 · Build</div>
           <p class="pillar-body">
             Custom software designed around your workflow. Fewer tools, tighter fit, production-grade from day one.
@@ -475,6 +500,7 @@
           <span class="pillar-cue">↗</span>
         </button>
         <button class="pillar hover-target" type="button" data-pillar="2">
+          <span class="pillar-glow" aria-hidden="true"></span>
           <div class="pillar-marker section-marker">003 · Tune</div>
           <p class="pillar-body">
             We stay past deploy. Software needs tending — better to catch a regression than read about it later.
